@@ -1,0 +1,20 @@
+{
+  "name": "janis_klavins/mage-bit-task",
+  "autoload": {
+    "psr-4": {
+      "JanisKlavins\\MageBitTask\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Jānis Kļaviņš",
+      "email": "jklavins14@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  },
+  "require": {}
+}
