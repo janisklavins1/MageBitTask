@@ -25,15 +25,43 @@ class Router
 
         //  Page Not Found
         if ($callback === false) {
-            echo "Not Found";
-            exit;
+            return "Not Found";
         }
 
-        echo call_user_func($callback);
+        if (is_string($callback)) {
+           return $this->renderView($callback);
+        }
+
+        return call_user_func($callback);
 
         // echo '<pre>';
         // var_dump($callback);
         // echo '</pre>';
         // exit;
+    }
+
+    public function renderView($view)
+    {
+        $layoutContent = $this->layoutContent();
+        $viewContent = $this->renderOnlyView($view);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+
+        //include_once Application::$ROOT_DIR."/views/$view.php";
+    }
+
+    public function layoutContent() 
+    {
+        //  Start caching and nothing is outputed in browser
+        ob_start();
+        include_once Application::$ROOT_DIR."/views/layouts/main.php";
+        //  Returns the value and clears it
+        return ob_get_clean();
+    }
+
+    protected function renderOnlyView($view)
+    {
+        ob_start();
+        include_once Application::$ROOT_DIR."/views/$view.php";
+        return ob_get_clean();
     }
 }
