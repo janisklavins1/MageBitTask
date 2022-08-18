@@ -11,8 +11,9 @@ $app = new Application(dirname(__DIR__));
 
 
 $app->router->get('/', [SiteController::class, 'home']);
-$app->router->get('/user', [SiteController::class, 'contact']);
-$app->router->post('/user', [SiteController::class, 'handleContent']);
+$app->router->post('/', [SiteController::class, 'home']);
+// $app->router->get('/user', [SiteController::class, 'contact']);
+// $app->router->post('/user', [SiteController::class, 'handleContent']);
 
 
 

@@ -2,36 +2,58 @@
 
 namespace app\controllers;
 
-use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\models\SubscribeModel;
 
 class SiteController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $params = [
-            'name' => "Janis Klavins"
-        ];
+        $subscribeModel = new SubscribeModel();
 
-        return $this->render('home', $params);
+        if ($request->isPost()) {
+
+            $subscribeModel->loadData($request->getBody());
+
+            if ($subscribeModel->validate() && $subscribeModel->subscribe()) {
+                return 'Success!';
+            }
+
+            echo '<pre>';
+            var_dump($subscribeModel->errors);
+            echo '</pre>';
+            exit;
+
+            return $this->render('home', [
+                'model' => $subscribeModel
+            ]);
+        }
+
+        return $this->render('home', [
+            'model' => $subscribeModel
+        ]);
     }
 
-    public function contact()
-    {
-        return $this->render('contact');
-    }
+    // public function handleSubscription(Request $request)
+    // {
+    //     $data = $request->getBody();
+    //     echo $data['email'];
 
-    public function handleContent(Request $request)
-    {
-        $data = $request->getBody();
+    //     return $this->render('homeSubscribed');
+    // }
 
-        // echo '<pre>';
-        //ar_dump($data['email']);
-        echo $data['email'];
-        // echo '</pre>';
-        // exit;
+    // public function contact()
+    // {
+    //     return $this->render('contact');
+    // }
 
-        return 'Handaling Data Controllers';
-    }
+    // public function handleContent(Request $request)
+    // {
+    //     $data = $request->getBody();
+
+
+
+    //     return 'Handaling Data Controllers';
+    // }
 }
