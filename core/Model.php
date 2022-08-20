@@ -13,6 +13,7 @@ abstract class Model
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
+
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
             }
@@ -24,7 +25,10 @@ abstract class Model
     public function validate()
     {
         foreach ($this->rules() as $attribute => $rules) {
-            $value = $this->{$attribute};
+            if (isset($this->{$attribute})) {
+                $value = $this->{$attribute};
+            }
+
 
             foreach ($rules as  $rule) {
                 $ruleName = $rule;
@@ -43,6 +47,10 @@ abstract class Model
 
                 if ($ruleName === self::RULE_INVALID_ENDING && substr($value, -3) == '.co') {
                     $this->addError($attribute, self::RULE_INVALID_ENDING);
+                }
+
+                if ($ruleName === self::RULE_CHECKBOX &&  $value !== true) {
+                    $this->addError($attribute, self::RULE_CHECKBOX);
                 }
             }
         }

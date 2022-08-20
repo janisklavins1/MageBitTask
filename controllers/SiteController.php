@@ -12,18 +12,25 @@ class SiteController extends Controller
     {
         $subscribeModel = new SubscribeModel();
 
+
         if ($request->isPost()) {
 
             $subscribeModel->loadData($request->getBody());
 
-            if ($subscribeModel->validate() && $subscribeModel->subscribe()) {
+            if ($subscribeModel->validate() && $subscribeModel->setEmails()) {
+
+                // echo '<pre>';
+                // var_dump($subscribeModel);
+                // echo '</pre>';
+                // exit;
                 return 'Success!';
             }
 
-            echo '<pre>';
-            var_dump($subscribeModel->errors);
-            echo '</pre>';
-            exit;
+
+            // echo '<pre>';
+            // var_dump($subscribeModel->errors);
+            // echo '</pre>';
+            // exit;
 
             return $this->render('home', [
                 'model' => $subscribeModel

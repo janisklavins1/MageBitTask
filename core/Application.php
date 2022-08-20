@@ -12,6 +12,7 @@ class Application
     public Response $response;
     public static Application $app;
 
+
     public function __construct($rootPath)
     {
         self::$ROOT_DIR = $rootPath;
