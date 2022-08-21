@@ -1,0 +1,126 @@
+@import 'variables';
+
+.LandingPage {
+  background-image: url(/img/Bg.png);
+  background-position-x: 680px;
+  background-repeat: no-repeat;
+  height: 1080px;
+
+  display: flex;
+
+  &-Panel {
+    width: 680px;
+    padding-top: 100px;
+
+    &-TopBar {
+      display: flex;
+      justify-content: space-evenly;
+
+      &-Left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        :nth-child(2) {
+          display: flex;
+          padding-top: 10px;
+          align-items: center;
+        }
+      }
+
+      &-Right {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+
+        span {
+          font-family: $contentFont;
+          line-height: 26px;
+        }
+      }
+    }
+
+    &-TextArea {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 234px;
+      gap: 15px;
+
+      &-Heading {
+        font-family: $headingFont;
+        font-size: 32px;
+        line-height: 44px;
+      }
+
+      &-Content {
+        font-family: $contentFont;
+        font-size: 16px;
+        line-height: 28px;
+        max-width: 400px;
+        color: $darkGrey;
+        padding-bottom: 50px;
+      }
+    }
+
+    &-Input {
+      &-Container {
+        // margin-left: 400px;
+
+        &-Inner {
+          //margin-left: 400px;
+          //width: calc(100% + 83px);
+          display: flex;
+          width: 100%;
+          margin: 0;
+        }
+      }
+
+      &-Box1 {
+        margin-left: 500px;
+      }
+
+      &-Box {
+        // max-width: 663px;
+        width: 100%;
+        // right: 100px;
+        border: 1px $lightGrey solid;
+        // width: 100%;
+        background-color: #ffffff;
+        padding: 22px 0;
+        //padding-left: 44px;
+        display: flex;
+        //gap: 328px;
+        position: relative;
+        align-items: center;
+        border-left: 4px solid $blue;
+      }
+
+      &-Field {
+        border: none;
+        font-family: $contentFont;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      &-Submit {
+        position: absolute;
+        right: 0;
+        background-color: unset;
+        border: unset;
+        width: 24px;
+        height: 14px;
+        //margin-right: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          color: $black;
+          font-size: 23px;
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+}
